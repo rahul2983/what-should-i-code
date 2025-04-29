@@ -11,6 +11,7 @@ A lightweight web application that generates random creative coding project idea
 - **Difficulty Filters**: Find projects matching your skill level (Beginner, Intermediate, Advanced)
 - **Save Favorites**: Keep track of ideas you love for later
 - **History**: Automatically tracks your recently viewed ideas
+- **Clear History**: Easily reset your browsing history when needed
 - **Sharing**: Easily share ideas via Email, WhatsApp, or Messages
 - **Mobile Friendly**: Fully responsive design with mobile-optimized UI
 - **Dark Mode**: Automatic dark mode based on system preferences
@@ -28,7 +29,8 @@ Using the app is simple:
 2. Use the category and difficulty filters to find specific types of projects
 3. Save your favorite ideas by clicking the "Save Favorite" button
 4. View your history and favorites in the tabs below
-5. Share great ideas with yourself or others using the share button
+5. Clear your history at any time with the "Clear History" button
+6. Share great ideas with yourself or others using the share button
 
 ## 🛠️ Technologies
 
@@ -52,6 +54,16 @@ Special features for mobile devices:
 - Double-tap to copy
 - Add to Home Screen functionality
 - Optimized touch targets and mobile UI
+
+## 🔄 Data Management
+
+The app uses local browser storage for:
+
+- Saving your favorite project ideas
+- Tracking your recently viewed ideas history
+- All data is stored locally on your device
+- Clear your browsing history with one click
+- Your data is never sent to a server
 
 ## 🖥️ Local Development
 
