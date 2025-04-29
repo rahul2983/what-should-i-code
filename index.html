@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#4a6fa5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>What Should I Code?</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4a6fa5;
+      --primary-color-dark: #3d5d8a;
+      --primary-color-light: #e0eafc;
+      --primary-color-very-light: #f5f9ff;
+      --text-color: #333;
+      --text-color-light: #666;
+      --text-color-very-light: #999;
+      --bg-color: #f0f8ff;
+      --white: #ffffff;
+      --border-radius: 12px;
+      --border-radius-small: 8px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --spacing-xs: 5px;
+      --spacing-sm: 8px;
+      --spacing: 15px;
+      --spacing-md: 20px;
+      --spacing-lg: 25px;
+      --spacing-xl: 30px;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.85rem;
+      --font-size: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.2rem;
+      --font-size-xxl: 1.5rem;
+      --font-size-h1: 2rem;
+      --animation-speed: 0.2s;
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text-color);
+      padding: var(--spacing-md) 0;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 600px;
+      width: 94%;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-h1);
+      font-weight: 700;
+    }
+    
+    .filters-container {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      width: 100%;
+      max-width: 250px;
+    }
+    
+    .filter-group label {
+      font-size: var(--font-size);
+      color: var(--text-color-light);
+      white-space: nowrap;
+      font-weight: 500;
+      width: 30%;
+      text-align: right;
+    }
+    
+    .filter-group select {
+      padding: var(--spacing-sm) var(--spacing);
+      border-radius: var(--border-radius-small);
+      border: 1px solid #ddd;
+      background-color: var(--primary-color-very-light);
+      font-size: var(--font-size);
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all var(--animation-speed) ease;
+      width: 70%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a6fa5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 1em;
+      padding-right: 30px;
+    }
+    
+    .filter-group select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+    }
+    
+    .filter-group select.active-filter {
+      border-color: var(--primary-color);
+      background-color: var(--primary-color-light);
+    }
+    
+    .idea-container {
+      background-color: var(--primary-color-very-light);
+      border-radius: var(--border-radius-small);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 5px solid var(--primary-color);
+      font-size: var(--font-size-xl);
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .idea {
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    
+    .difficulty {
+      font-size: var(--font-size);
+      background-color: var(--primary-color-light);
+      padding: var(--spacing-xs) var(--spacing);
+      border-radius: 20px;
+      margin-top: var(--spacing-sm);
+      display: inline-block;
+      font-weight: 500;
+    }
+    
+    .category {
+      font-size: var(--font-size-sm);
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 700;
+    }
+    
+    button {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border: none;
+      border-radius: 25px;
+      padding: var(--spacing) var(--spacing-lg);
+      font-size: var(--font-size-lg);
+      cursor: pointer;
+      transition: all var(--animation-speed) ease;
+      outline: none;
+      margin-top: var(--spacing-sm);
+      font-weight: 600;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      /* Add a touch of elevation */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    button:hover {
+      background-color: var(--primary-color-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+    
+    .secondary-btn {
+      background-color: var(--white);
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+    
+    .secondary-btn:hover {
+      background-color: var(--primary-color-very-light);
+    }
+    
+    .secondary-btn.active {
+      background-color: var(--primary-color-light);
+    }
+    
+    .heart-icon {
+      font-size: var(--font-size-lg);
+      margin-right: 5px;
+      position: relative;
+      top: 1px;
+    }
+    
+    .footer {
+      margin-top: var(--spacing-lg);
+      font-size: var(--font-size);
+      color: var(--text-color-very-light);
+    }
+    
+    .history-favorites-container {
+      margin-top: var(--spacing-xl);
+      border-top: 1px solid var(--primary-color-light);
+      padding-top: var(--spacing-md);
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--primary-color-light);
+      margin-bottom: var(--spacing);
+    }
+    
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin: 0;
+      color: var(--text-color-very-light);
+      font-size: var(--font-size-md);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      box-shadow: none;
+      flex: 1;
+    }
+    
+    .tab-btn.active {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .tab-content {
+      display: none;
+      max-height: 250px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .history-item, .favorite-item {
+      background-color: var(--primary-color-very-light);
+      border-radius: var(--border-radius-small);
+      padding: var(--spacing);
+      margin-bottom: var(--spacing-sm);
+      text-align: left;
+      position: relative;
+      border-left: 3px solid var(--primary-color);
+      cursor: pointer;
+      transition: all var(--animation-speed) ease;
+    }
+    
+    .history-item:hover, .favorite-item:hover {
+      background-color: var(--primary-color-light);
+    }
+    
+    .history-item:active, .favorite-item:active {
+      transform: scale(0.98);
+    }
+    
+    .item-category {
+      font-size: var(--font-size-xs);
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+    
+    .item-idea {
+      font-size: var(--font-size);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .item-difficulty {
+      font-size: var(--font-size-xs);
+      color: var(--text-color-light);
+    }
+    
+    .remove-btn {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: var(--font-size);
+      padding: 0;
+      margin: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: none;
+    }
+    
+    .remove-btn:hover, .remove-btn:active {
+      color: #ff6b6b;
+      background-color: rgba(255, 107, 107, 0.1);
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .empty-message {
+      color: var(--text-color-very-light);
+      font-style: italic;
+      padding: var(--spacing-md);
+      text-align: center;
+    }
+    
+    .share-btn {
+      position: absolute;
+      top: var(--spacing);
+      right: var(--spacing);
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      font-size: var(--font-size-xl);
+      padding: var(--spacing-xs);
+      margin: 0;
+      cursor: pointer;
+      transition: all var(--animation-speed) ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: none;
+    }
+    
+    .share-btn:hover, .share-btn:active {
+      color: var(--primary-color-dark);
+      background-color: rgba(74, 111, 165, 0.1);
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .share-dropdown {
+      position: absolute;
+      top: 55px;
+      right: var(--spacing);
+      background-color: var(--white);
+      border-radius: var(--border-radius-small);
+      box-shadow: var(--shadow);
+      padding: var(--spacing-sm);
+      display: none;
+      z-index: 10;
+      animation: fadeIn var(--animation-speed);
+    }
+    
+    .share-dropdown.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .share-option {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-sm) var(--spacing);
+      border-radius: var(--border-radius-small);
+      cursor: pointer;
+      transition: all var(--animation-speed) ease;
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: var(--font-size);
+    }
+    
+    .share-option:hover, .share-option:active {
+      background-color: var(--primary-color-very-light);
+    }
+    
+    .share-option i {
+      margin-right: var(--spacing-sm);
+      font-size: var(--font-size-lg);
+      width: 24px;
+      text-align: center;
+    }
+    
+    .share-email i { color: #d44638; }
+    .share-whatsapp i { color: #25D366; }
+    .share-imessage i { color: #34C759; }
+    
+    .notification {
+      position: fixed;
+      bottom: var(--spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 25px;
+      font-size: var(--font-size);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 100;
+      font-weight: 500;
+      /* Add elevation shadow */
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      max-width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .notification.show {
+      opacity: 1;
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      :root {
+        --font-size-h1: 1.8rem;
+        --spacing-lg: 20px;
+        --spacing-xl: 25px;
+      }
+      
+      .container {
+        padding: var(--spacing-md);
+        width: 92%;
+      }
+      
+      .idea-container {
+        padding: var(--spacing-md);
+      }
+      
+      .button-group {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+      
+      button {
+        width: 100%;
+        padding: var(--spacing) var(--spacing-md);
+      }
+      
+      .filters-container {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+      
+      .filter-group {
+        width: 100%;
+      }
+      
+      /* Increase touch target sizes for mobile */
+      .share-btn,
+      .remove-btn {
+        width: 44px;
+        height: 44px;
+      }
+      
+      .tab-btn {
+        padding: var(--spacing-sm) var(--spacing-xs);
+      }
+      
+      /* Adjust the share dropdown positioning for better mobile view */
+      .share-dropdown {
+        right: 0;
+        width: 180px;
+      }
+      
+      /* Add a subtle bounce effect to the generate button when tapped on mobile */
+      button:active {
+        transform: scale(0.98);
+      }
+    }
+    
+    /* Add support for dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #5d83b9;
+        --primary-color-dark: #4a6fa5;
+        --primary-color-light: #344863;
+        --primary-color-very-light: #2a394e;
+        --text-color: #e0e0e0;
+        --text-color-light: #b0b0b0;
+        --text-color-very-light: #808080;
+        --bg-color: #1a1a1a;
+        --white: #2a2a2a;
+      }
+      
+      body {
+        background-color: #121212;
+      }
+      
+      .share-dropdown {
+        background-color: #333;
+      }
+      
+      input, select, button {
+        color-scheme: dark;
+      }
+      
+      .filter-group select {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d83b9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      }
+    }
+    
+    /* Add iOS app-like styling when added to home screen */
+    @media (display-mode: standalone) {
+      body {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+      
+      .container {
+        border-radius: var(--spacing-md);
+        margin-top: env(safe-area-inset-top);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>What Should I Code?</h1>
+    
+    <div class="filters-container">
+      <div class="filter-group">
+        <label for="category-filter">Category:</label>
+        <select id="category-filter">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="difficulty-filter">Difficulty:</label>
+        <select id="difficulty-filter">
+          <option value="all">All Difficulties</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="idea-container">
+      <div>
+        <div class="category">Web Development</div>
+        <div class="idea">Create a minimalist weather app that changes its color scheme based on the current weather conditions</div>
+        <div class="difficulty">Intermediate</div>
+      </div>
+      <button class="share-btn" title="Share this idea"><i class="fas fa-share-alt"></i></button>
+      <div class="share-dropdown">
+        <a href="#" class="share-option share-email"><i class="fas fa-envelope"></i>Email</a>
+        <a href="#" class="share-option share-whatsapp"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+        <a href="#" class="share-option share-imessage"><i class="fas fa-comment"></i>Messages</a>
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="generate-btn">Generate New Idea</button>
+      <button id="favorite-btn" class="secondary-btn"><i class="heart-icon">♡</i> Save Favorite</button>
+    </div>
+    <div class="history-favorites-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="history">History</button>
+        <button class="tab-btn" data-tab="favorites">Favorites</button>
+      </div>
+      <div class="tab-content active" id="history">
+        <div class="history-list" id="history-list">
+          <div class="empty-message">Your history will appear here</div>
+        </div>
+      </div>
+      <div class="tab-content" id="favorites">
+        <div class="favorites-list" id="favorites-list">
+          <div class="empty-message">Your favorites will appear here</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">Click the button to get inspired! ✨</div>
+  </div>
+  <div class="notification" id="notification">Copied to clipboard!</div>
+
+  <script>
+    const projectIdeas = [
+      {
+        category: "Web Development",
+        idea: "Create a minimalist weather app that changes its color scheme based on the current weather conditions",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Games",
+        idea: "Build a word-guessing game like Wordle with your own unique twist",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Data Visualization",
+        idea: "Create an interactive visualization of your daily habits over time",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Automation",
+        idea: "Build a personal expense tracker that categorizes your spending automatically",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Web Development",
+        idea: "Create a countdown timer for upcoming events with customizable themes",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Mobile App",
+        idea: "Develop a plant care reminder app with light/water tracking",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Games",
+        idea: "Build a simple physics-based game where players navigate obstacles",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Utility",
+        idea: "Create a browser extension that summarizes long articles",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a recipe finder that suggests meals based on ingredients you have",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Data Analysis",
+        idea: "Create a personal dashboard that visualizes your music listening habits",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Utility",
+        idea: "Develop a custom markdown note-taking app with tags and search",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a minimalist pomodoro timer with ambient sound options",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Games",
+        idea: "Create a multiplayer drawing and guessing game for friends",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Automation",
+        idea: "Build a tool that generates consistent color palettes for projects",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Web Development",
+        idea: "Create a book tracking app that connects to a books API",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Mobile App",
+        idea: "Develop a daily goal tracker with streaks and achievements",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Utility",
+        idea: "Build a custom URL shortener with analytics",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Web Development",
+        idea: "Create an interactive map of places you've visited or want to visit",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Games",
+        idea: "Build a simple text-based adventure game with multiple endings",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Utility",
+        idea: "Develop a browser extension that blocks distracting websites during work hours",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Web Development",
+        idea: "Create a daily quote generator with share functionality",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Data Visualization",
+        idea: "Build a tool that visualizes your GitHub commit history in a unique way",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Automation",
+        idea: "Create a script that organizes your downloads folder based on file types",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a collaborative whiteboard for remote brainstorming",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Games",
+        idea: "Create a typing speed test game with different difficulty levels",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Mobile App",
+        idea: "Develop a simple meditation app with timed sessions and ambient sounds",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Utility",
+        idea: "Build a tool that generates random user personas for UX research",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Web Development",
+        idea: "Create a personal link-saving app that organizes bookmarks by topic",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Data Analysis",
+        idea: "Build a tool that analyzes and visualizes text sentiment from journal entries",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Automation",
+        idea: "Create a simple CRM for freelancers to track client interactions",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a tool that generates social media content ideas for creators",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Games",
+        idea: "Create a memory card matching game with custom themes",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Utility",
+        idea: "Develop a custom password generator with strength visualization",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a tool that helps people learn a new language with spaced repetition",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Mobile App",
+        idea: "Create a simple workout tracker that generates progress reports",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Automation",
+        idea: "Build a tool that automatically generates meeting notes from recordings",
+        difficulty: "Advanced"
+      },
+      {
+        category: "Web Development",
+        idea: "Create a customizable dashboard for tracking personal goals",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Games",
+        idea: "Build a browser-based quiz game that pulls questions from an API",
+        difficulty: "Intermediate"
+      },
+      {
+        category: "Utility",
+        idea: "Create a simple task management system with priorities and deadlines",
+        difficulty: "Beginner"
+      },
+      {
+        category: "Web Development",
+        idea: "Build a tool that helps plan meals for the week based on dietary preferences",
+        difficulty: "Intermediate"
+      }
+    ];
+
+    // DOM Elements
+    const generateBtn = document.getElementById('generate-btn');
+    const favoriteBtn = document.getElementById('favorite-btn');
+    const ideaContainer = document.querySelector('.idea-container');
+    const notification = document.getElementById('notification');
+    const historyList = document.getElementById('history-list');
+    const favoritesList = document.getElementById('favorites-list');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const categoryFilter = document.getElementById('category-filter');
+    const difficultyFilter = document.getElementById('difficulty-filter');
+
+    // Local Storage Keys
+    const HISTORY_KEY = 'wsic_history';
+    const FAVORITES_KEY = 'wsic_favorites';
+
+    // Current Idea
+    let currentIdea = null;
+    
+    // Filter values
+    let selectedCategory = 'all';
+    let selectedDifficulty = 'all';
+
+    // Initialize from local storage
+    let history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+    let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+
+    // Populate category filter
+    function populateCategoryFilter() {
+      // Get unique categories
+      const categories = [...new Set(projectIdeas.map(idea => idea.category))];
+      
+      // Sort alphabetically
+      categories.sort();
+      
+      // Clear existing options except "All Categories"
+      while (categoryFilter.options.length > 1) {
+        categoryFilter.remove(1);
+      }
+      
+      // Add options to select
+      categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+      });
+      
+      console.log(`Populated ${categories.length} categories in filter`);
+    }
+
+    // Function to get random idea based on filters
+    function getRandomIdea() {
+      // Filter ideas based on selected filters
+      let filteredIdeas = projectIdeas.filter(idea => {
+        let matchesCategory = selectedCategory === 'all' || idea.category === selectedCategory;
+        let matchesDifficulty = selectedDifficulty === 'all' || idea.difficulty === selectedDifficulty;
+        return matchesCategory && matchesDifficulty;
+      });
+      
+      // If no ideas match the filters, return null
+      if (filteredIdeas.length === 0) {
+        return null;
+      }
+      
+      // Get random idea from filtered list
+      const randomIndex = Math.floor(Math.random() * filteredIdeas.length);
+      return filteredIdeas[randomIndex];
+    }
+
+    // Function to add idea to history
+    function addToHistory(idea) {
+      // Clone idea object to avoid reference issues
+      const ideaClone = { ...idea, timestamp: Date.now() };
+      
+      // Add to beginning of array
+      history.unshift(ideaClone);
+      
+      // Keep only the last 10 items
+      if (history.length > 10) {
+        history = history.slice(0, 10);
+      }
+      
+      // Save to local storage
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      
+      // Update UI
+      updateHistoryUI();
+    }
+
+    // Function to toggle favorite status
+    function toggleFavorite(idea) {
+      // Check if idea is already in favorites
+      const index = favorites.findIndex(fav => 
+        fav.category === idea.category && 
+        fav.idea === idea.idea && 
+        fav.difficulty === idea.difficulty
+      );
+      
+      if (index === -1) {
+        // Add to favorites
+        const ideaClone = { ...idea, timestamp: Date.now() };
+        favorites.push(ideaClone);
+        showNotification('Added to favorites!');
+        favoriteBtn.innerHTML = '<i class="heart-icon">♥</i> Remove Favorite';
+        favoriteBtn.classList.add('active');
+      } else {
+        // Remove from favorites
+        favorites.splice(index, 1);
+        showNotification('Removed from favorites');
+        favoriteBtn.innerHTML = '<i class="heart-icon">♡</i> Save Favorite';
+        favoriteBtn.classList.remove('active');
+      }
+      
+      // Save to local storage
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+      
+      // Update UI
+      updateFavoritesUI();
+    }
+
+    // Function to check if current idea is a favorite
+    function isCurrentIdeaFavorite() {
+      if (!currentIdea) return false;
+      
+      return favorites.some(fav => 
+        fav.category === currentIdea.category && 
+        fav.idea === currentIdea.idea &&
+        fav.difficulty === currentIdea.difficulty
+      );
+    }
+
+    // Function to update UI with new idea
+    function updateIdea(ideaObj = null) {
+      // Get idea from parameter or generate a new one
+      const idea = ideaObj || getRandomIdea();
+      
+      // If no idea matches the filters, show a message
+      if (!idea) {
+        ideaContainer.innerHTML = '<div class="empty-message">No ideas match your current filters. Try changing your selections.</div>';
+        currentIdea = null;
+        favoriteBtn.disabled = true;
+        return;
+      }
+      
+      currentIdea = idea;
+      
+      // Create elements
+      const categoryEl = document.createElement('div');
+      categoryEl.className = 'category';
+      categoryEl.textContent = idea.category;
+      
+      const ideaEl = document.createElement('div');
+      ideaEl.className = 'idea';
+      ideaEl.textContent = idea.idea;
+      
+      const difficultyEl = document.createElement('div');
+      difficultyEl.className = 'difficulty';
+      difficultyEl.textContent = idea.difficulty;
+      
+      // Create share button
+      const shareButtonEl = document.createElement('button');
+      shareButtonEl.className = 'share-btn';
+      shareButtonEl.title = 'Share this idea';
+      shareButtonEl.innerHTML = '<i class="fas fa-share-alt"></i>';
+      shareButtonEl.setAttribute('aria-label', 'Share this idea');
+      
+      // Create share dropdown
+      const shareDropdownEl = document.createElement('div');
+      shareDropdownEl.className = 'share-dropdown';
+      shareDropdownEl.innerHTML = `
+        <a href="#" class="share-option share-email"><i class="fas fa-envelope"></i>Email</a>
+        <a href="#" class="share-option share-whatsapp"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+        <a href="#" class="share-option share-imessage"><i class="fas fa-comment"></i>Messages</a>
+      `;
+      
+      // Clear previous content
+      ideaContainer.innerHTML = '';
+      
+      // Create wrapper div
+      const wrapper = document.createElement('div');
+      
+      // Append elements
+      wrapper.appendChild(categoryEl);
+      wrapper.appendChild(ideaEl);
+      wrapper.appendChild(difficultyEl);
+      ideaContainer.appendChild(wrapper);
+      ideaContainer.appendChild(shareButtonEl);
+      ideaContainer.appendChild(shareDropdownEl);
+      
+      // Add event listeners to new share elements
+      setupShareFunctionality();
+      
+      // Apply animation effect
+      ideaContainer.style.opacity = '0';
+      setTimeout(() => {
+        ideaContainer.style.opacity = '1';
+      }, 50);
+      
+      // Update favorite button state
+      updateFavoriteButtonState();
+      favoriteBtn.disabled = false;
+      
+      // Add to history if it's a new idea (not from history/favorites click)
+      if (!ideaObj) {
+        addToHistory(idea);
+      }
+      
+      // Add haptic feedback on mobile if supported
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+      }
+    }
+
+    // Function to set up share functionality
+    function setupShareFunctionality() {
+      const shareBtn = document.querySelector('.share-btn');
+      const shareDropdown = document.querySelector('.share-dropdown');
+      const shareEmail = document.querySelector('.share-email');
+      const shareWhatsApp = document.querySelector('.share-whatsapp');
+      const shareIMessage = document.querySelector('.share-imessage');
+      
+      // First check if Web Share API is available for native sharing
+      const hasNativeShare = 'share' in navigator && navigator.canShare;
+      
+      // Toggle share dropdown
+      shareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // If Web Share API is available, use it
+        if (hasNativeShare && currentIdea) {
+          const shareData = {
+            title: `Coding Project Idea: ${currentIdea.idea}`,
+            text: `Check out this coding project idea I found:\n\n${currentIdea.idea}\n\nCategory: ${currentIdea.category}\nDifficulty: ${currentIdea.difficulty}\n\nGenerated by What Should I Code? app`
+          };
+          
+          navigator.share(shareData)
+            .then(() => showNotification('Shared successfully!'))
+            .catch((err) => {
+              console.log('Share failed:', err);
+              // Fall back to dropdown if sharing fails
+              shareDropdown.classList.toggle('active');
+            });
+        } else {
+          // Fall back to dropdown if Web Share API is not available
+          shareDropdown.classList.toggle('active');
+        }
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', () => {
+        shareDropdown.classList.remove('active');
+      });
+      
+      // Prevent dropdown from closing when clicking inside it
+      shareDropdown.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      
+      // Share via Email
+      shareEmail.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!currentIdea) return;
+        
+        const subject = encodeURIComponent(`Coding Project Idea: ${currentIdea.idea}`);
+        const body = encodeURIComponent(`Check out this coding project idea I found:\n\n${currentIdea.idea}\n\nCategory: ${currentIdea.category}\nDifficulty: ${currentIdea.difficulty}\n\nGenerated by What Should I Code? app`);
+        window.open(`mailto:?subject=${subject}&body=${body}`);
+        
+        shareDropdown.classList.remove('active');
+        showNotification('Opening email client...');
+      });
+      
+      // Share via WhatsApp
+      shareWhatsApp.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!currentIdea) return;
+        
+        const text = encodeURIComponent(`Check out this coding project idea I found:\n\n*${currentIdea.idea}*\n\nCategory: ${currentIdea.category}\nDifficulty: ${currentIdea.difficulty}\n\nGenerated by What Should I Code? app`);
+        window.open(`https://wa.me/?text=${text}`);
+        
+        shareDropdown.classList.remove('active');
+        showNotification('Opening WhatsApp...');
+      });
+      
+      // Share via iMessage (SMS)
+      shareIMessage.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!currentIdea) return;
+        
+        const body = encodeURIComponent(`Check out this coding project idea I found:\n\n${currentIdea.idea}\n\nCategory: ${currentIdea.category}\nDifficulty: ${currentIdea.difficulty}\n\nGenerated by What Should I Code? app`);
+        window.open(`sms:&body=${body}`);
+        
+        shareDropdown.classList.remove('active');
+        showNotification('Opening Messages...');
+      });
+    }
+
+    // Function to update favorite button state
+    function updateFavoriteButtonState() {
+      if (isCurrentIdeaFavorite()) {
+        favoriteBtn.innerHTML = '<i class="heart-icon">♥</i> Remove Favorite';
+        favoriteBtn.classList.add('active');
+      } else {
+        favoriteBtn.innerHTML = '<i class="heart-icon">♡</i> Save Favorite';
+        favoriteBtn.classList.remove('active');
+      }
+    }
+
+    // Function to show notification
+    function showNotification(message) {
+      notification.textContent = message;
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 2000);
+    }
+
+    // Function to update history UI
+    function updateHistoryUI() {
+      if (history.length === 0) {
+        historyList.innerHTML = '<div class="empty-message">Your history will appear here</div>';
+        return;
+      }
+      
+      historyList.innerHTML = '';
+      
+      history.forEach((item, index) => {
+        const historyItem = document.createElement('div');
+        historyItem.className = 'history-item';
+        historyItem.innerHTML = `
+          <div class="item-category">${item.category}</div>
+          <div class="item-idea">${item.idea}</div>
+          <div class="item-difficulty">${item.difficulty}</div>
+        `;
+        
+        // Click to load this idea
+        historyItem.addEventListener('click', () => {
+          updateIdea(item);
+        });
+        
+        historyList.appendChild(historyItem);
+      });
+    }
+
+    // Function to update favorites UI
+    function updateFavoritesUI() {
+      if (favorites.length === 0) {
+        favoritesList.innerHTML = '<div class="empty-message">Your favorites will appear here</div>';
+        return;
+      }
+      
+      favoritesList.innerHTML = '';
+      
+      favorites.forEach((item, index) => {
+        const favoriteItem = document.createElement('div');
+        favoriteItem.className = 'favorite-item';
+        favoriteItem.innerHTML = `
+          <div class="item-category">${item.category}</div>
+          <div class="item-idea">${item.idea}</div>
+          <div class="item-difficulty">${item.difficulty}</div>
+          <button class="remove-btn" aria-label="Remove from favorites">×</button>
+        `;
+        
+        // Click to load this idea
+        favoriteItem.addEventListener('click', (e) => {
+          if (e.target.className !== 'remove-btn') {
+            updateIdea(item);
+          }
+        });
+        
+        // Remove button click
+        const removeBtn = favoriteItem.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          favorites.splice(index, 1);
+          localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+          updateFavoritesUI();
+          
+          // Update favorite button if current idea is being removed
+          if (currentIdea && 
+              currentIdea.category === item.category && 
+              currentIdea.idea === item.idea && 
+              currentIdea.difficulty === item.difficulty) {
+            updateFavoriteButtonState();
+          }
+          
+          showNotification('Removed from favorites');
+          
+          // Add haptic feedback on mobile if supported
+          if ('vibrate' in navigator) {
+            navigator.vibrate([30, 20, 30]);
+          }
+        });
+        
+        favoritesList.appendChild(favoriteItem);
+      });
+    }
+
+    // Function to handle filter changes
+    function handleFilterChange() {
+      selectedCategory = categoryFilter.value;
+      selectedDifficulty = difficultyFilter.value;
+      
+      // Update UI to reflect that filters are active
+      if (selectedCategory !== 'all') {
+        categoryFilter.classList.add('active-filter');
+      } else {
+        categoryFilter.classList.remove('active-filter');
+      }
+      
+      if (selectedDifficulty !== 'all') {
+        difficultyFilter.classList.add('active-filter');
+      } else {
+        difficultyFilter.classList.remove('active-filter');
+      }
+      
+      if (selectedCategory !== 'all' || selectedDifficulty !== 'all') {
+        showNotification('Filters applied');
+      }
+    }
+
+    // Tab switching
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+        
+        // Add haptic feedback on mobile if supported
+        if ('vibrate' in navigator) {
+            navigator.vibrate(20);
+        }
+      });
+    });
+
+    // Event Listeners
+    generateBtn.addEventListener('click', () => {
+      updateIdea();
+    });
+    
+    favoriteBtn.addEventListener('click', () => {
+      toggleFavorite(currentIdea);
+      
+      // Add haptic feedback on mobile if supported
+      if ('vibrate' in navigator) {
+        if (isCurrentIdeaFavorite()) {
+          navigator.vibrate([30, 20, 50]); // Pattern for adding to favorites
+        } else {
+          navigator.vibrate([50, 20, 30]); // Pattern for removing from favorites
+        }
+      }
+    });
+    
+    categoryFilter.addEventListener('change', () => {
+      handleFilterChange();
+    });
+    
+    difficultyFilter.addEventListener('change', () => {
+      handleFilterChange();
+    });
+    
+    // Double tap on idea to copy to clipboard
+    let lastTap = 0;
+    ideaContainer.addEventListener('touchend', (e) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+      
+      if (tapLength < 300 && tapLength > 0) {
+        // Double tap detected
+        if (!currentIdea) return;
+        
+        const idea = document.querySelector('.idea').textContent;
+        
+        // Use clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(idea)
+            .then(() => {
+              showNotification('Copied to clipboard!');
+              
+              // Add haptic feedback on mobile if supported
+              if ('vibrate' in navigator) {
+                navigator.vibrate([10, 20, 10]);
+              }
+            })
+            .catch(err => {
+              console.error('Failed to copy: ', err);
+              showNotification('Could not copy to clipboard');
+            });
+        } else {
+          // Fallback for browsers that don't support clipboard API
+          const textArea = document.createElement('textarea');
+          textArea.value = idea;
+          textArea.style.position = 'fixed'; // Avoid scrolling to bottom
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          
+          try {
+            const successful = document.execCommand('copy');
+            showNotification(successful ? 'Copied to clipboard!' : 'Could not copy to clipboard');
+          } catch (err) {
+            console.error('Failed to copy: ', err);
+            showNotification('Could not copy to clipboard');
+          }
+          
+          document.body.removeChild(textArea);
+        }
+        
+        e.preventDefault();
+      }
+      
+      lastTap = currentTime;
+    });
+    
+    // Also keep click-based double-click for desktop
+    ideaContainer.addEventListener('dblclick', () => {
+      if (!currentIdea) return;
+      
+      const idea = document.querySelector('.idea').textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(idea)
+          .then(() => {
+            showNotification('Copied to clipboard!');
+          })
+          .catch(err => {
+            console.error('Failed to copy: ', err);
+            showNotification('Could not copy to clipboard');
+          });
+      } else {
+        // Fallback
+        const textArea = document.createElement('textarea');
+        textArea.value = idea;
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+          const successful = document.execCommand('copy');
+          showNotification(successful ? 'Copied to clipboard!' : 'Could not copy to clipboard');
+        } catch (err) {
+          showNotification('Could not copy to clipboard');
+        }
+        
+        document.body.removeChild(textArea);
+      }
+    });
+
+    // Add "Add to Home Screen" functionality
+    let deferredPrompt;
+    const addToHomeScreenBtn = document.createElement('button');
+    addToHomeScreenBtn.style.display = 'none';
+    addToHomeScreenBtn.className = 'secondary-btn';
+    addToHomeScreenBtn.textContent = 'Add to Home Screen';
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later
+      deferredPrompt = e;
+      // Update UI to show the button
+      addToHomeScreenBtn.style.display = 'block';
+      
+      // Add the button to the DOM if not already there
+      if (!document.body.contains(addToHomeScreenBtn)) {
+        const buttonGroup = document.querySelector('.button-group');
+        buttonGroup.appendChild(addToHomeScreenBtn);
+      }
+    });
+    
+    addToHomeScreenBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      
+      // Show the install prompt
+      deferredPrompt.prompt();
+      
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      // We no longer need the prompt
+      deferredPrompt = null;
+      
+      // Hide the button
+      addToHomeScreenBtn.style.display = 'none';
+      
+      showNotification(outcome === 'accepted' ? 
+                      'Thank you for installing!' : 
+                      'You can always install later');
+    });
+    
+    // Handle app being installed
+    window.addEventListener('appinstalled', () => {
+      // Hide the button
+      addToHomeScreenBtn.style.display = 'none';
+      // Clear the deferredPrompt
+      deferredPrompt = null;
+      // Log or show a message
+      console.log('App was installed');
+    });
+
+    // Initialize the app
+    function initializeApp() {
+      populateCategoryFilter();
+      updateIdea();
+      updateHistoryUI();
+      updateFavoritesUI();
+      setupShareFunctionality();
+    }
+
+    // If the document is already loaded, run initialization immediately
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
+    }
+  </script>
+</body>
+</html>
