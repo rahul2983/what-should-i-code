@@ -562,6 +562,33 @@
         margin-top: env(safe-area-inset-top);
       }
     }
+
+    .clear-button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .clear-btn {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .clear-btn:hover {
+      background-color: #ff5252;
+      transform: translateY(-1px);
+    }
+
+    .clear-btn:active {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -609,6 +636,9 @@
         <button class="tab-btn" data-tab="favorites">Favorites</button>
       </div>
       <div class="tab-content active" id="history">
+        <div class="clear-button-container">
+          <button id="clear-history-btn" class="clear-btn">Clear History</button>
+        </div>
         <div class="history-list" id="history-list">
           <div class="empty-message">Your history will appear here</div>
         </div>
@@ -1171,6 +1201,29 @@
       });
     }
 
+    // Function to clear history
+    function clearHistory() {
+      // Ask for confirmation
+      if (confirm("Are you sure you want to clear your history? This action cannot be undone.")) {
+        // Clear history array
+        history = [];
+        
+        // Update local storage
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        
+        // Update UI
+        updateHistoryUI();
+        
+        // Show notification
+        showNotification('History cleared!');
+        
+        // Add haptic feedback on mobile if supported
+        if ('vibrate' in navigator) {
+          navigator.vibrate([30, 20, 30]);
+        }
+      }
+    }
+
     // Function to update favorites UI
     function updateFavoritesUI() {
       if (favorites.length === 0) {
@@ -1437,6 +1490,12 @@
       updateHistoryUI();
       updateFavoritesUI();
       setupShareFunctionality();
+
+      // Add event listener for clear history button
+      const clearHistoryBtn = document.getElementById('clear-history-btn');
+      if (clearHistoryBtn) {
+        clearHistoryBtn.addEventListener('click', clearHistory);
+      }
     }
 
     // If the document is already loaded, run initialization immediately
